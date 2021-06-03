@@ -1,0 +1,25 @@
+Preprocessing for both the training and test datasets included dataset carpentry and exploratory data analysis. The first step included loading in the dataset and getting a feel 
+for it, which may include getting a description of the columns, checking out the datasets size, what kind of data makes up each column, etc. After figuring out what was in the 
+dataset the next step would to be drop any irrelevant columns that won't be needed in the analysis. After dropping irrelevent columns the next step would be to look for unique 
+values in the string columns, as well as looking for Nan or Null values, which will need to be dealt with. There are different ways to handle missing values, and the like, such 
+as replacing them with the median, mode, or simply getting rid of them. After taking care of all missing values it is time to encode the columns so that only intergers and floats 
+remain throughout the dataframe. It is time to separate the dataframe into two seperate dataframes, one with all the non-target variables, and one with the target variable. 
+Things can end here unless the dataframe needs to be managed due to its size. In the case of cross-validation the dataframe was too large and thus an undersampling technique 
+was implemented. Afterwards the sampled data couled be saved using the pickle library.
+
+The model that was used for this evaluation uses a principal component analysis (PCA) for feature selection and support vector classification (SVC) for classification. This 
+pipeline model was trained on a rebalanced training dataset that was reduced using an IsolationForest method and GridSearchCV was used to find the optimal parameters.
+
+Between the reduced and non-reduced test datasets, only the non-reduced test dataset showed any kind of significant result when attempting to predict items that went on back 
+order.The reduction model ended up reducing the already small number of items on back order, while eliminating the ~200,000 detected outliers. Adjusting the contamination 
+parameter in the reduction model may help with this.
+
+The reduced model does a good job at predicting items that did not go on back order relatively accurately with only a few items that went on back order being mislabeled. An 
+accurate model to predict items that did not go on back order can have value, as if an items that did not go on back order is predicted to be such there is a strong degree of 
+confidence with this model.
+
+The non-reduced test set, had a decent recall score of 0.55, meaning out of all the actual positive identifications this model was able to get 55% of them correct for the items 
+that went on back order. The problem is the model also identified a large number of items that didn't go on backorder as items that did go on backorder. With a recall of 0.59, 
+out of all the actual positive identifications this model was able to get 59% of them correct for the items that did not go on back order. In other words, 41% of the time this
+model would misidentify an item that did not go on back order and an item that did go on back order. This fact is represented in the precision, where the proportion of positive 
+identifications that were correct for the items that did go on backorder was only 0.01 or 1%.
