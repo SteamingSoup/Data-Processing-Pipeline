@@ -1,0 +1,100 @@
+Pipeline 1
+
+Evaluation:
+              precision    recall  f1-score   support
+
+           0       0.60      0.22      0.32      1703
+           1       0.50      0.84      0.63      1583
+
+    accuracy                           0.52      3286
+   macro avg       0.55      0.53      0.48      3286
+weighted avg       0.55      0.52      0.47      3286
+
+Pipeline Precision: 0.554
+Pipeline Recall: 0.554
+Pipeline F1-Score: 0.47
+Pipeline Accuracy: 0.521
+
+
+Confusion Matrix:
+   0	1
+0	375	1328
+1	247	1336
+
+
+Best Estimator:
+Pipeline(steps=[('CHI',
+                 SelectKBest(k=1,
+                             score_func=<function chi2 at 0x7eff5e868e18>)),
+                ('NB', GaussianNB())])
+
+
+Best Parameters:
+{'CHI__k': 1, 'NB__var_smoothing': 1e-09}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Pipeline 2
+
+Evaluation:
+              precision    recall  f1-score   support
+
+           0       0.56      0.59      0.58      2022
+           1       0.61      0.58      0.59      2247
+
+    accuracy                           0.58      4269
+   macro avg       0.58      0.59      0.58      4269
+weighted avg       0.59      0.58      0.58      4269
+
+Pipeline Precision: 0.586
+Pipeline Recall: 0.586
+Pipeline F1-Score: 0.585
+Pipeline Accuracy: 0.585
+
+
+Confusion Matrix:
+     0	1
+0	1202	820
+1	953	1294
+
+
+Best Estimator:
+Pipeline(steps=[('RFE', RFE(estimator=SVR(), n_features_to_select=30, step=10)),
+                ('LR', LogisticRegression(C=5))])
+
+
+Best Parameters:
+{'LR__C': 5, 'RFE__n_features_to_select': 30, 'RFE__step': 10}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Pipeline 3
+
+Evaluation:
+              precision    recall  f1-score   support
+
+           0       0.74      0.83      0.78       255
+           1       0.77      0.67      0.72       220
+
+    accuracy                           0.75       475
+   macro avg       0.76      0.75      0.75       475
+weighted avg       0.76      0.75      0.75       475
+
+Pipeline Precision: 0.755
+Pipeline Recall: 0.755
+Pipeline F1-Score: 0.752
+Pipeline Accuracy: 0.754
+
+
+Confusion Matrix:
+    0	1
+0	211	44
+1	73	147
+
+
+Best Estimator:
+Pipeline(steps=[('PCA', PCA(n_components=5)), ('SVC', SVC(C=5000.0))])
+
+
+Best Parameters:
+{'PCA__n_components': 5, 'SVC__C': 5000.0, 'SVC__kernel': 'rbf'}
